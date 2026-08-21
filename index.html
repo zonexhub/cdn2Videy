@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 html,
 body {
@@ -114,58 +114,69 @@ body {
     line-height: normal;
     text-align: center;
 }
-   /* CSS Banner Teks & Link */
-/* CSS CONTAINER BANNER BARU */
-.text-banner-container {
-    width: 100%;
-    background: #111111; /* Samain warna background header */
-    padding: 0; /* Padding di handle sama elemen di dalamnya */
+   /* Baris Info di Bawah Video */
+.video-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111111;
+    padding: 12px 15px;
     box-sizing: border-box;
-    border-top: 1px solid #1a1a1a;  /* Garis pemisah atas dengan video */
-    border-bottom: 1px solid #1a1a1a; /* Garis pemisah bawah dengan tombol tele */
+    width: 100%;
+    border-bottom: 1px solid #1a1a1a;
 }
 
-/* CSS TEKS BANNERNYA (DIBUAT LEBIH RINGKAS) */
-.more-video-banner {
+/* Teks Label */
+.info-label {
     color: #cccccc;
     font-family: Arial, sans-serif;
     font-size: 14px;
-    text-align: center;
-    padding: 12px 15px; /* Padding aman buat teks */
-    box-sizing: border-box;
-    /* border-top: 0; <-- Tidak perlu lagi, sudah ditangani container */
-    /* border-bottom: 0; <-- Tidak perlu lagi, sudah ditangani container */
+    font-weight: normal;
 }
 
-/* CSS ANIMASI PULSE GLOW (Tetap sama seperti sebelumnya) */
-.more-video-banner a {
-    color: #eb1f72; /* Warna pink senada logo */
+/* Styling untuk Ikon FontAwesome (Jempol Kuning) */
+.pointing-icon {
+    color: #ffcc00; /* Warna kuning emas yang cerah dan kontras */
+    font-size: 18px; /* Dikecilin/dipasin dikit biar proporsional */
+    margin: 0 8px;  /* Jarak aman kiri-kanan */
+    
+    /* Tambahan efek shadow tipis biar jempolnya makin "hidup" dan keluar */
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.4); 
+}
+
+/* Tombol Badge Zonexhub.net yang Besar & Denyut */
+.btn-brand-badge {
+    display: inline-block;
+    background: #eb1f72; 
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    padding: 10px 18px;
     font-weight: bold;
     text-decoration: none;
-    display: inline-block;
-    animation: pulse-glow 2s infinite;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    animation: pulse-badge 2s infinite;
 }
 
-.more-video-banner a:hover {
-    text-decoration: underline;
+.btn-brand-badge:hover {
+    background: #d61563;
     animation: none;
 }
 
-/* (@keyframes pulse-glow tetap ada di bawah ini) */
-
-/* DEFINISI ANIMASI PULSING GLOW */
-@keyframes pulse-glow {
+/* Animasi Denyut / Pulse */
+@keyframes pulse-badge {
     0% {
-        text-shadow: 0 0 0 rgba(235, 31, 114, 0);
+        box-shadow: 0 0 0 0 rgba(235, 31, 114, 0.4);
         transform: scale(1);
     }
-    50% {
-        text-shadow: 0 0 10px rgba(235, 31, 114, 0.8); /* Pendaran glow membesar */
-        transform: scale(1.05); /* Teks sedikit membesar */
+    70% {
+        box-shadow: 0 0 0 8px rgba(235, 31, 114, 0);
+        transform: scale(1.04);
     }
     100% {
-        text-shadow: 0 0 0 rgba(235, 31, 114, 0);
-        transform: scale(1); /* Kembali ke ukuran normal */
+        box-shadow: 0 0 0 0 rgba(235, 31, 114, 0);
+        transform: scale(1);
     }
 }
 </style>
@@ -199,14 +210,18 @@ body {
     </video>
 </div>
 
-<!-- TEKS & BACKLINK DENGAN EFEK DENYUT -->
-<div class="text-banner-container">
-    <div class="more-video-banner">
-        Mau video full & update lainnya? Kunjungi <a href="https://zonexhub.net" target="_blank" rel="noopener noreferrer">ZoneXhub.net</a>
-    </div>
+<!-- INFO VIDEO & TOMBOL LINK KE ZONEXHUB -->
+<!-- INFO VIDEO & TOMBOL LINK KE ZONEXHUB -->
+<div class="video-info-bar">
+    <span class="info-label">Mau Video Lainnya?</span>
+    
+    <!-- PAKAI IKON FONTAWESOME -->
+    <i class="fa-solid fa-hand-point-right pointing-icon"></i>
+    
+    <a href="https://zonexhub.net" target="_blank" rel="noopener noreferrer" class="btn-brand-badge">ZoneXhub.net</a>
 </div>
 
-<!-- TOMBOL TELEGRAM (Sudah ada) -->
+<!-- TOMBOL TELEGRAM DI BAWAHNYA -->
 <div class="tele-wrapper">
     <a href="https://t.me/+9yfRTEBsNSNjNWVl" target="_blank" rel="noopener noreferrer" class="btn-telegram">
         JOIN TELEGRAM BUAT STOK TERBARU
