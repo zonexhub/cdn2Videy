@@ -114,6 +114,48 @@ body {
     line-height: normal;
     text-align: center;
 }
+   /* CSS Banner Teks & Link */
+.more-video-banner {
+    background: #111111;
+    color: #cccccc;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.more-video-banner a {
+    color: #eb1f72; /* Warna pink senada logo */
+    font-weight: bold;
+    text-decoration: none;
+    /* INISIALISASI ANIMASI: */
+    display: inline-block; /* Wajib buat elemen inline kayak 'a' biar animasi jalan */
+    animation: pulse-glow 2s infinite; /* Panggil animasinya */
+}
+
+.more-video-banner a:hover {
+    text-decoration: underline;
+    animation: none; /* Matiin animasi pas di-hover biar gak pusing */
+}
+
+/* DEFINISI ANIMASI PULSING GLOW */
+@keyframes pulse-glow {
+    0% {
+        text-shadow: 0 0 0 rgba(235, 31, 114, 0);
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(235, 31, 114, 0.8); /* Pendaran glow membesar */
+        transform: scale(1.05); /* Teks sedikit membesar */
+    }
+    100% {
+        text-shadow: 0 0 0 rgba(235, 31, 114, 0);
+        transform: scale(1); /* Kembali ke ukuran normal */
+    }
+}
 </style>
 
 <!-- KODE POPUNDER RESMI ADSTERRA -->
@@ -145,7 +187,12 @@ body {
     </video>
 </div>
 
-<!-- TOMBOL TELEGRAM DI BAWAH PLAYER -->
+<!-- TEKS & BACKLINK DENGAN EFEK DENYUT -->
+<div class="more-video-banner">
+    Mau video full & update lainnya? Kunjungi <a href="https://zonexhub.net" target="_blank" rel="noopener noreferrer">ZoneXhub.net</a>
+</div>
+
+<!-- TOMBOL TELEGRAM DI BAWAHNYA -->
 <div class="tele-wrapper">
     <a href="https://t.me/+9yfRTEBsNSNjNWVl" target="_blank" rel="noopener noreferrer" class="btn-telegram">
         JOIN TELEGRAM BUAT STOK TERBARU
