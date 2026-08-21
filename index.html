@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Viral Video</title>
 <style>
 html,
 body {
@@ -83,7 +84,10 @@ body {
     display: block;
     width: 100%;
     padding: 16px 0;
-    background: #00b862;
+    
+    /* GRADASI HIJAU (Dari agak terang di atas, ke hijau sedikit tua di bawah) */
+    background: linear-gradient(to bottom, #00d26a, #00a855);
+    
     color: #ffffff;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -94,10 +98,15 @@ body {
     box-sizing: border-box;
     line-height: normal;
     letter-spacing: 0.5px;
+    
+    /* Tambahan efek bayangan tipis biar makin mirip tombol 3D */
+    box-shadow: 0 4px 10px rgba(0, 184, 98, 0.3);
 }
 
 .btn-telegram:active {
-    background: #009e53;
+    /* Waktu dipencet, gradasinya dibalik/digelapin dikit biar ada efek klik */
+    background: linear-gradient(to bottom, #00a855, #008f47);
+    box-shadow: 0 2px 5px rgba(0, 184, 98, 0.2);
 }
 
 #errorMessage {
@@ -119,19 +128,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #111111;
+    
     padding: 12px 15px;
     box-sizing: border-box;
     width: 100%;
-    border-bottom: 1px solid #1a1a1a;
+    border-top: 1px solid #1a1a1a;
 }
 
 /* Teks Label */
 .info-label {
     color: #cccccc;
     font-family: Arial, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
+    font-size: 16px;
+    font-weight: 800;
+    
 }
 
 /* Styling untuk Ikon FontAwesome (Jempol Kuning) */
@@ -151,10 +161,10 @@ body {
     color: #ffffff;
     font-family: Arial, sans-serif;
     font-size: 15px;
-    padding: 10px 18px;
+    padding: 10px 8px;
     font-weight: bold;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 4px;
     letter-spacing: 0.5px;
     animation: pulse-badge 2s infinite;
 }
@@ -213,7 +223,7 @@ body {
 <!-- INFO VIDEO & TOMBOL LINK KE ZONEXHUB -->
 <!-- INFO VIDEO & TOMBOL LINK KE ZONEXHUB -->
 <div class="video-info-bar">
-    <span class="info-label">Mau Video Lainnya?</span>
+    <span class="info-label">Tonton Video Lainnya?</span>
     
     <!-- PAKAI IKON FONTAWESOME -->
     <i class="fa-solid fa-hand-point-right pointing-icon"></i>
@@ -222,9 +232,10 @@ body {
 </div>
 
 <!-- TOMBOL TELEGRAM DI BAWAHNYA -->
+<!-- TOMBOL TELEGRAM DENGAN LOGO DI DALAMNYA -->
 <div class="tele-wrapper">
     <a href="https://t.me/+9yfRTEBsNSNjNWVl" target="_blank" rel="noopener noreferrer" class="btn-telegram">
-        JOIN TELEGRAM BUAT STOK TERBARU
+        <i class="fa-brands fa-telegram"></i> JOIN TELEGRAM BUAT STOK TERBARU
     </a>
 </div>
 
