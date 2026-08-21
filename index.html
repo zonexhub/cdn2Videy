@@ -16,6 +16,41 @@ body {
     overflow-x: hidden;
 }
 
+/* Style Header Logo */
+.site-header {
+    width: 100%;
+    background: #111111;
+    padding: 10px 0;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #aaaaaa;
+    line-height: normal;
+    letter-spacing: 0.3px;
+}
+
+/* Style Logo PNG kamu */
+.logo-png {
+    height: 28px; /* Tinggal sesuaikan tinggi logo PNG nanti */
+    width: auto;
+    margin-left: 8px; /* Jarak antara tulisan "Video dari" dan logo */
+    vertical-align: middle;
+    filter: drop-shadow(0 0 10px rgba(235, 31, 114, 0.4));
+}
+
+/* Style Video Wrapper */
 .video-wrapper {
     position: relative;
     display: block;
@@ -35,6 +70,35 @@ body {
     background: #000;
 }
 
+/* Style Tombol Telegram */
+.tele-wrapper {
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #000;
+}
+
+.btn-telegram {
+    display: block;
+    width: 100%;
+    padding: 16px 0;
+    background: #00b862;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+    line-height: normal;
+    letter-spacing: 0.5px;
+}
+
+.btn-telegram:active {
+    background: #009e53;
+}
+
 #errorMessage {
     display: none;
     width: 100%;
@@ -51,28 +115,40 @@ body {
 }
 </style>
 
-<!-- KODE POPUNDER RESMI ADSTERRA DI SINI -->
+<!-- KODE POPUNDER RESMI ADSTERRA -->
 <script src="https://layinghypothesis.com/d8/56/22/d8562243fc17b32f31bf3214d6cb59d1.js"></script>
 
 </head>
 
 <body>
 
-<div class="video-wrapper">
 
+<!-- HEADER / LOGO BRAND -->
+<div class="site-header">
+    <div class="site-logo">
+        Video dari
+        <img src="https://image.zonexhub.net/BQACAgUAAyEFAAMBA-dBOQADCWqIKzMpRtqJMuRCCYCQsXgAASN_iAACrCEAAub3QVRhS0GeITryyT0E" class="logo-png">
+    </div>
+</div>
+
+<div class="video-wrapper">
     <video
         id="videoPolos"
         controls
         playsinline
         preload="metadata">
-
         <source
             id="videoSource"
             src=""
             type="video/mp4">
-
     </video>
+</div>
 
+<!-- TOMBOL TELEGRAM DI BAWAH PLAYER -->
+<div class="tele-wrapper">
+    <a href="https://t.me/+9yfRTEBsNSNjNWVl" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+        JOIN TELEGRAM BUAT STOK TERBARU
+    </a>
 </div>
 
 <div id="errorMessage">
@@ -81,24 +157,11 @@ body {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
-    const params = new URLSearchParams(
-        window.location.search
-    );
-
+    const params = new URLSearchParams(window.location.search);
     const slug = params.get("v");
-
-    const video = document.getElementById(
-        "videoPolos"
-    );
-
-    const source = document.getElementById(
-        "videoSource"
-    );
-
-    const errorMessage = document.getElementById(
-        "errorMessage"
-    );
+    const video = document.getElementById("videoPolos");
+    const source = document.getElementById("videoSource");
+    const errorMessage = document.getElementById("errorMessage");
 
     if (!slug) {
         tampilkanError();
@@ -106,50 +169,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     fetch("videos.json")
-
         .then(function (response) {
-
             if (!response.ok) {
-                throw new Error(
-                    "videos.json gagal dimuat"
-                );
+                throw new Error("videos.json gagal dimuat");
             }
-
             return response.json();
-
         })
-
         .then(function (data) {
-
             const videoData = data[slug];
-
             if (!videoData) {
                 tampilkanError();
                 return;
             }
-
             source.src = videoData.video;
-
             video.load();
-
         })
-
         .catch(function (error) {
-
             console.error(error);
-
             tampilkanError();
-
         });
 
     function tampilkanError() {
-
         video.style.display = "none";
-
+        document.querySelector(".site-header").style.display = "none";
+        document.querySelector(".tele-wrapper").style.display = "none";
         errorMessage.style.display = "flex";
-
     }
-
 });
 </script>
 
