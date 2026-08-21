@@ -115,31 +115,43 @@ body {
     text-align: center;
 }
    /* CSS Banner Teks & Link */
+/* CSS CONTAINER BANNER BARU */
+.text-banner-container {
+    width: 100%;
+    background: #111111; /* Samain warna background header */
+    padding: 0; /* Padding di handle sama elemen di dalamnya */
+    box-sizing: border-box;
+    border-top: 1px solid #1a1a1a;  /* Garis pemisah atas dengan video */
+    border-bottom: 1px solid #1a1a1a; /* Garis pemisah bawah dengan tombol tele */
+}
+
+/* CSS TEKS BANNERNYA (DIBUAT LEBIH RINGKAS) */
 .more-video-banner {
-    background: #111111;
     color: #cccccc;
     font-family: Arial, sans-serif;
     font-size: 14px;
     text-align: center;
-    padding: 12px 15px;
+    padding: 12px 15px; /* Padding aman buat teks */
     box-sizing: border-box;
-    border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
+    /* border-top: 0; <-- Tidak perlu lagi, sudah ditangani container */
+    /* border-bottom: 0; <-- Tidak perlu lagi, sudah ditangani container */
 }
 
+/* CSS ANIMASI PULSE GLOW (Tetap sama seperti sebelumnya) */
 .more-video-banner a {
     color: #eb1f72; /* Warna pink senada logo */
     font-weight: bold;
     text-decoration: none;
-    /* INISIALISASI ANIMASI: */
-    display: inline-block; /* Wajib buat elemen inline kayak 'a' biar animasi jalan */
-    animation: pulse-glow 2s infinite; /* Panggil animasinya */
+    display: inline-block;
+    animation: pulse-glow 2s infinite;
 }
 
 .more-video-banner a:hover {
     text-decoration: underline;
-    animation: none; /* Matiin animasi pas di-hover biar gak pusing */
+    animation: none;
 }
+
+/* (@keyframes pulse-glow tetap ada di bawah ini) */
 
 /* DEFINISI ANIMASI PULSING GLOW */
 @keyframes pulse-glow {
@@ -188,11 +200,13 @@ body {
 </div>
 
 <!-- TEKS & BACKLINK DENGAN EFEK DENYUT -->
-<div class="more-video-banner">
-    Mau video full & update lainnya? Kunjungi <a href="https://zonexhub.net" target="_blank" rel="noopener noreferrer">ZoneXhub.net</a>
+<div class="text-banner-container">
+    <div class="more-video-banner">
+        Mau video full & update lainnya? Kunjungi <a href="https://zonexhub.net" target="_blank" rel="noopener noreferrer">ZoneXhub.net</a>
+    </div>
 </div>
 
-<!-- TOMBOL TELEGRAM DI BAWAHNYA -->
+<!-- TOMBOL TELEGRAM (Sudah ada) -->
 <div class="tele-wrapper">
     <a href="https://t.me/+9yfRTEBsNSNjNWVl" target="_blank" rel="noopener noreferrer" class="btn-telegram">
         JOIN TELEGRAM BUAT STOK TERBARU
