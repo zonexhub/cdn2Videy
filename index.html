@@ -266,7 +266,10 @@
                 return;
             }
 
-            fetch("videos.json")
+            const versiAntiCache = Math.floor(Date.now() / 120000);
+            const antiCacheUrl = "videos.json?v=" + versiAntiCache;
+
+            fetch(antiCacheUrl)
                 .then(function (response) {
                     if (!response.ok) {
                         throw new Error("videos.json gagal dimuat");
