@@ -68,6 +68,41 @@
             background: #000;
         }
 
+        .overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.50);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .btn-lanjutkan {
+            padding: 12px 24px;
+            background: linear-gradient(to bottom, #eb1f72, #d61563);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(235, 31, 114, 0.4);
+            font-family: Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-lanjutkan:active {
+            transform: scale(0.95);
+        }
+
         .tele-wrapper {
             padding: 15px;
             box-sizing: border-box;
@@ -188,6 +223,12 @@
         <video id="videoPolos" controls playsinline preload="metadata">
             <source id="videoSource" src="" type="video/mp4">
         </video>
+
+        <div id="videoOverlay" class="overlay">
+            <button id="btnLanjutkan" class="btn-lanjutkan">
+                <i class="fa-solid fa-play" style="margin-right: 5px;"></i> Lanjutkan Menonton
+            </button>
+        </div>
     </div>
 
     <div class="video-info-bar">
@@ -213,6 +254,12 @@
             const video = document.getElementById("videoPolos");
             const source = document.getElementById("videoSource");
             const errorMessage = document.getElementById("errorMessage");
+            
+            const overlay = document.getElementById('videoOverlay');
+            const btnLanjutkan = document.getElementById('btnLanjutkan');
+            
+            let hasShownOverlay = false;
+            let isWaitingForReturn = false;
 
             if (!slug) {
                 tampilkanError();
@@ -246,6 +293,42 @@
                 document.querySelector(".tele-wrapper").style.display = "none";
                 errorMessage.style.display = "flex";
             }
+
+            function tampilkanOverlay() {
+                overlay.style.display = 'flex';
+                video.removeAttribute('controls');
+                video.pause();
+            }
+
+            video.addEventListener('timeupdate', () => {
+                if (video.currentTime >= 40 && !hasShownOverlay) {
+                    hasShownOverlay = true; 
+                    tampilkanOverlay();
+                }
+            });
+
+            video.addEventListener('pause', () => {
+                if (hasShownOverlay && overlay.style.display !== 'flex' && !isWaitingForReturn) {
+                    tampilkanOverlay();
+                }
+            });
+
+            btnLanjutkan.addEventListener('click', () => {
+                window.open('https://layinghypothesis.com/t7pgs2uek7?key=b4d0a9ccbdeab1ce09b94e2b66968e28', '_blank');
+                isWaitingForReturn = true; 
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && isWaitingForReturn) {
+                    overlay.style.display = 'none'; 
+                    video.setAttribute('controls', 'controls'); 
+                    
+                    setTimeout(() => {
+                        video.play(); 
+                        isWaitingForReturn = false; 
+                    }, 300);
+                }
+            });
         });
     </script>
 
