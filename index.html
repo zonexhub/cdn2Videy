@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Viral Video</title>
+    <title>Viral Video SMP, SMA, Talent Kolpri</title>
     <style>
         html,
         body {
@@ -69,13 +69,13 @@
         }
 
         .overlay {
-            display: none;
+            display: flex;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.50);
+            background-color: rgba(0, 0, 0, 0.40);
             z-index: 10;
             justify-content: center;
             align-items: center;
@@ -86,15 +86,15 @@
         }
 
         .btn-lanjutkan {
-            padding: 12px 24px;
+            padding: 14px 28px;
             background: linear-gradient(to bottom, #eb1f72, #d61563);
             color: #ffffff;
             border: none;
             border-radius: 4px;
-            font-size: 15px;
+            font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(235, 31, 114, 0.4);
+            box-shadow: 0 4px 12px rgba(235, 31, 114, 0.5);
             font-family: Arial, sans-serif;
             letter-spacing: 0.5px;
         }
@@ -206,9 +206,6 @@
             }
         }
     </style>
-
-    <!-- KODE POPUNDER RESMI ADSTERRA -->
-    <script src="https://layinghypothesis.com/d8/56/22/d8562243fc17b32f31bf3214d6cb59d1.js"></script>
 </head>
 <body>
 
@@ -220,13 +217,13 @@
     </div>
 
     <div class="video-wrapper">
-        <video id="videoPolos" controls playsinline preload="metadata">
+        <video id="videoPolos" playsinline preload="metadata">
             <source id="videoSource" src="" type="video/mp4">
         </video>
 
         <div id="videoOverlay" class="overlay">
             <button id="btnLanjutkan" class="btn-lanjutkan">
-                <i class="fa-solid fa-play" style="margin-right: 5px;"></i> Lanjutkan Menonton
+                <i class="fa-solid fa-play" style="margin-right: 8px;"></i> KLIK UNTUK MEMUTAR
             </button>
         </div>
     </div>
@@ -258,7 +255,7 @@
             const overlay = document.getElementById('videoOverlay');
             const btnLanjutkan = document.getElementById('btnLanjutkan');
             
-            let hasShownOverlay = false;
+            let currentStage = 1;
             let isWaitingForReturn = false;
 
             if (!slug) {
@@ -297,28 +294,39 @@
                 errorMessage.style.display = "flex";
             }
 
-            function tampilkanOverlay() {
+            function nyalakanOverlay(teksTombol) {
                 overlay.style.display = 'flex';
+                btnLanjutkan.innerHTML = '<i class="fa-solid fa-play" style="margin-right: 8px;"></i> ' + teksTombol;
                 video.removeAttribute('controls');
                 video.pause();
             }
 
+            btnLanjutkan.addEventListener('click', () => {
+                window.open('https://layinghypothesis.com/t7pgs2uek7?key=b4d0a9ccbdeab1ce09b94e2b66968e28', '_blank');
+                
+                if (currentStage === 1) {
+                    currentStage = 2;
+                    overlay.style.display = 'none';
+                    video.setAttribute('controls', 'controls');
+                    video.play();
+                } else {
+                    isWaitingForReturn = true;
+                }
+            });
+
             video.addEventListener('timeupdate', () => {
-                if (video.currentTime >= 40 && !hasShownOverlay) {
-                    hasShownOverlay = true; 
-                    tampilkanOverlay();
+                if (video.currentTime >= 20 && currentStage === 2 && overlay.style.display === 'none') {
+                    nyalakanOverlay("LANJUTKAN MENONTON");
+                }
+                else if (video.currentTime >= 90 && currentStage === 3 && overlay.style.display === 'none') {
+                    nyalakanOverlay("LANJUTKAN MENONTON");
                 }
             });
 
             video.addEventListener('pause', () => {
-                if (hasShownOverlay && overlay.style.display !== 'flex' && !isWaitingForReturn) {
-                    tampilkanOverlay();
+                if (currentStage > 1 && overlay.style.display !== 'flex' && !isWaitingForReturn) {
+                    nyalakanOverlay("LANJUTKAN MENONTON");
                 }
-            });
-
-            btnLanjutkan.addEventListener('click', () => {
-                window.open('https://layinghypothesis.com/t7pgs2uek7?key=b4d0a9ccbdeab1ce09b94e2b66968e28', '_blank');
-                isWaitingForReturn = true; 
             });
 
             document.addEventListener('visibilitychange', () => {
@@ -326,6 +334,12 @@
                     overlay.style.display = 'none'; 
                     video.setAttribute('controls', 'controls'); 
                     
+                    if (currentStage === 2) {
+                        currentStage = 3;
+                    } else if (currentStage === 3) {
+                        currentStage = 4;
+                    }
+
                     setTimeout(() => {
                         video.play(); 
                         isWaitingForReturn = false; 
@@ -334,6 +348,5 @@
             });
         });
     </script>
-
 </body>
 </html>
