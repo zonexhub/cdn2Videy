@@ -75,7 +75,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.40);
+            background-color: rgba(0, 0, 0, 0.20);
             z-index: 10;
             justify-content: center;
             align-items: center;
@@ -86,15 +86,15 @@
         }
 
         .btn-lanjutkan {
-            padding: 14px 28px;
+            padding: 9px 18px;
             background: linear-gradient(to bottom, #eb1f72, #d61563);
             color: #ffffff;
             border: none;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 13px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(235, 31, 114, 0.5);
+            box-shadow: 0 3px 8px rgba(235, 31, 114, 0.4);
             font-family: Arial, sans-serif;
             letter-spacing: 0.5px;
         }
@@ -223,7 +223,7 @@
 
         <div id="videoOverlay" class="overlay">
             <button id="btnLanjutkan" class="btn-lanjutkan">
-                <i class="fa-solid fa-play" style="margin-right: 8px;"></i> KLIK UNTUK MEMUTAR
+                <i class="fa-solid fa-play" style="margin-right: 6px;"></i> KLIK UNTUK MEMUTAR
             </button>
         </div>
     </div>
@@ -257,6 +257,7 @@
             
             let currentStage = 1;
             let isWaitingForReturn = false;
+            let isTransitioning = false;
 
             if (!slug) {
                 tampilkanError();
@@ -296,7 +297,7 @@
 
             function nyalakanOverlay(teksTombol) {
                 overlay.style.display = 'flex';
-                btnLanjutkan.innerHTML = '<i class="fa-solid fa-play" style="margin-right: 8px;"></i> ' + teksTombol;
+                btnLanjutkan.innerHTML = '<i class="fa-solid fa-play" style="margin-right: 6px;"></i> ' + teksTombol;
                 video.removeAttribute('controls');
                 video.pause();
             }
@@ -305,10 +306,15 @@
                 window.open('https://layinghypothesis.com/t7pgs2uek7?key=b4d0a9ccbdeab1ce09b94e2b66968e28', '_blank');
                 
                 if (currentStage === 1) {
+                    isTransitioning = true;
                     currentStage = 2;
                     overlay.style.display = 'none';
                     video.setAttribute('controls', 'controls');
                     video.play();
+                    
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 1000);
                 } else {
                     isWaitingForReturn = true;
                 }
@@ -316,16 +322,18 @@
 
             video.addEventListener('timeupdate', () => {
                 if (video.currentTime >= 20 && currentStage === 2 && overlay.style.display === 'none') {
-                    nyalakanOverlay("LANJUTKAN MENONTON");
+                    nyalakanOverlay("Lanjutkan Menonton");
                 }
                 else if (video.currentTime >= 90 && currentStage === 3 && overlay.style.display === 'none') {
-                    nyalakanOverlay("LANJUTKAN MENONTON");
+                    nyalakanOverlay("Lanjutkan Menonton");
                 }
             });
 
             video.addEventListener('pause', () => {
-                if (currentStage > 1 && overlay.style.display !== 'flex' && !isWaitingForReturn) {
-                    nyalakanOverlay("LANJUTKAN MENONTON");
+                if (isTransitioning || isWaitingForReturn) return;
+
+                if (currentStage > 1 && overlay.style.display !== 'flex') {
+                    nyalakanOverlay("Lanjutkan Menonton");
                 }
             });
 
