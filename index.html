@@ -103,6 +103,39 @@
             transform: scale(0.95);
         }
 
+        .controls-nav {
+            display: flex;
+            gap: 10px;
+            padding: 14px 18px;
+            background: #111111;
+            box-sizing: border-box;
+            width: 100%;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .btn-nav {
+            flex: 1;
+            padding: 12px 0;
+            background: #222222;
+            color: #ffffff;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: #333333;
+        }
+
+        .btn-nav:active {
+            transform: scale(0.96);
+        }
+
         .tele-wrapper {
             padding: 15px;
             box-sizing: border-box;
@@ -228,6 +261,11 @@
         </div>
     </div>
 
+    <div class="controls-nav">
+        <button id="btnPrev" class="btn-nav"><i class="fa-solid fa-arrow-left"></i> Video Sebelumnya</button>
+        <button id="btnNext" class="btn-nav">Video Selanjutnya <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
     <div class="video-info-bar">
         <span class="info-label">Tonton Video Lainnya?</span>
         <i class="fa-solid fa-hand-point-right pointing-icon"></i>
@@ -247,22 +285,20 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const params = new URLSearchParams(window.location.search);
-            const slug = params.get("v");
+            let slug = params.get("v");
             const video = document.getElementById("videoPolos");
             const source = document.getElementById("videoSource");
             const errorMessage = document.getElementById("errorMessage");
             
             const overlay = document.getElementById('videoOverlay');
             const btnLanjutkan = document.getElementById('btnLanjutkan');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
             
             let currentStage = 1;
             let isWaitingForReturn = false;
             let isTransitioning = false;
-
-            if (!slug) {
-                tampilkanError();
-                return;
-            }
+            let videoKeys = [];
 
             const versiAntiCache = Math.floor(Date.now() / 120000);
             const antiCacheUrl = "videos.json?v=" + versiAntiCache;
@@ -275,22 +311,58 @@
                     return response.json();
                 })
                 .then(function (data) {
-                    const videoData = data[slug];
-                    if (!videoData) {
+                    videoKeys = Object.keys(data);
+
+                    if (videoKeys.length === 0) {
                         tampilkanError();
                         return;
                     }
+
+                    if (!slug || !data[slug]) {
+                        slug = videoKeys[0];
+                        window.history.replaceState({}, '', '?v=' + slug);
+                    }
+
+                    const videoData = data[slug];
                     source.src = videoData.video;
                     video.load();
+
+                    setupNavigasi();
                 })
                 .catch(function (error) {
                     console.error(error);
                     tampilkanError();
                 });
 
+            function setupNavigasi() {
+                const currentIndex = videoKeys.indexOf(slug);
+
+                btnPrev.addEventListener('click', function () {
+                    if (currentIndex > 0) {
+                        const prevSlug = videoKeys[currentIndex - 1];
+                        window.location.href = '?v=' + prevSlug;
+                    } else {
+                        const lastSlug = videoKeys[videoKeys.length - 1];
+                        window.location.href = '?v=' + lastSlug;
+                    }
+                });
+
+                btnNext.addEventListener('click', function () {
+                    if (currentIndex < videoKeys.length - 1) {
+                        const nextSlug = videoKeys[currentIndex + 1];
+                        window.location.href = '?v=' + nextSlug;
+                    } else {
+                        const firstSlug = videoKeys[0];
+                        window.location.href = '?v=' + firstSlug;
+                    }
+                });
+            }
+
             function tampilkanError() {
                 video.style.display = "none";
                 document.querySelector(".site-header").style.display = "none";
+                document.querySelector(".controls-nav").style.display = "none";
+                document.querySelector(".video-info-bar").style.display = "none";
                 document.querySelector(".tele-wrapper").style.display = "none";
                 errorMessage.style.display = "flex";
             }
