@@ -492,13 +492,16 @@ ${detailInfo ? `ℹ️ <b>Detail:</b> ${detailInfo}\n` : ''}`;
             
             if (videoData && videoData.video) {
             if (videoData.poster && videoData.poster.trim() !== "") {
-             video.setAttribute('poster', videoData.poster);
-          } else {
-            video.removeAttribute('poster'); 
-          }
-            source.src = videoData.video + "#t=0.5";
-            video.load();
-          }
+        
+            video.setAttribute('poster', videoData.poster);
+            source.src = videoData.video; 
+            
+            } else {     
+               video.removeAttribute('poster'); 
+               source.src = videoData.video + "#t=0.5";
+            }
+               video.load();
+            }
             setupNavigasi();
          })
           .catch(function (error) {
