@@ -20,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* CSS UNTUK PLAYER UTAMA */
     .container {
       max-width: 480px;
       margin: 0 auto;
@@ -64,7 +63,6 @@
     .btn-telegram { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 0; background: linear-gradient(135deg, #0088cc, #006699); color: #fff; font-size: 14px; font-weight: bold; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3); }
     #errorMessage { display: none; width: 100%; min-height: 100vh; align-items: center; justify-content: center; color: #fff; background: #000; font-size: 16px; text-align: center; }
 
-    /* CSS UNTUK HALAMAN LOGIN & DASHBOARD ADMIN */
     #loginScreen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; background: #08070c; padding: 20px; }
     .login-box { background: #0f0e17; padding: 30px; border-radius: 12px; border: 1px solid #232232; box-shadow: 0 0 30px rgba(0,0,0,0.8); text-align: center; width: 100%; max-width: 350px; }
     .login-box h2 { margin-top: 0; color: #8b5cf6; }
@@ -72,18 +70,37 @@
     .btn-login { width: 100%; padding: 12px; border: none; border-radius: 6px; background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; font-weight: bold; cursor: pointer; font-size: 16px; }
     .btn-login:active { transform: scale(0.96); }
     
-    #dashboardScreen { display: none; min-height: 100vh; background: #08070c; padding: 20px; max-width: 800px; margin: 0 auto; }
-    .dashboard-header { text-align: center; margin-bottom: 30px; padding: 20px; background: #0f0e17; border-radius: 12px; border: 1px solid #232232; }
+    #dashboardScreen { display: none; min-height: 100vh; background: #08070c; padding: 20px; max-width: 900px; margin: 0 auto; }
+    .dashboard-header { text-align: center; margin-bottom: 20px; padding: 20px; background: #0f0e17; border-radius: 12px; border: 1px solid #232232; }
     .dashboard-header h1 { color: #8b5cf6; margin-top: 0; }
     .dashboard-header p { color: #a09cb0; margin-bottom: 0; }
+    
+    .dashboard-actions { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .search-input { flex: 1; min-width: 200px; padding: 12px 16px; border-radius: 8px; border: 1px solid #2d2b3f; background: #0f0e17; color: #fff; font-size: 14px; outline: none; }
+    .search-input:focus { border-color: #8b5cf6; }
+
+    .bulk-bar { display: flex; justify-content: space-between; align-items: center; background: #0f0e17; padding: 12px 16px; border-radius: 8px; border: 1px solid #232232; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .select-all-wrap { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #a09cb0; cursor: pointer; user-select: none; }
+    .select-all-wrap input { width: 18px; height: 18px; accent-color: #8b5cf6; cursor: pointer; }
+    .btn-bulk-copy { padding: 10px 18px; border: none; border-radius: 6px; background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+    .btn-bulk-copy:disabled { opacity: 0.4; cursor: not-allowed; background: #201f2d; border: 1px solid #2d2b3f; color: #a09cb0; }
+    .btn-bulk-copy.copied { background: #10b981; }
+
     .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-    .video-card { background: #0f0e17; border: 1px solid #232232; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .video-card { background: #0f0e17; border: 1px solid #232232; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+    .video-cb-overlay { position: absolute; top: 10px; left: 10px; z-index: 5; background: rgba(15, 14, 23, 0.85); padding: 4px 8px; border-radius: 6px; border: 1px solid #2d2b3f; backdrop-filter: blur(4px); display: flex; align-items: center; }
+    .video-cb { width: 18px; height: 18px; accent-color: #8b5cf6; cursor: pointer; }
     .video-poster { width: 100%; aspect-ratio: 16/9; background: #15141f; object-fit: cover; }
     .video-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
     .video-info h3 { font-size: 14px; margin: 0 0 15px 0; word-break: break-all; color: #fff; }
     .btn-copy { margin-top: auto; padding: 10px; border: none; border-radius: 6px; background: #201f2d; color: #a09cb0; cursor: pointer; border: 1px solid #2d2b3f; transition: 0.2s; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-copy:active { transform: scale(0.95); }
     .btn-copy.copied { background: #10b981; border-color: #10b981; color: #fff; }
+
+    .pagination-controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 30px; padding-bottom: 30px; }
+    .btn-page { padding: 9px 16px; background: #0f0e17; border: 1px solid #2d2b3f; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; }
+    .btn-page:disabled { opacity: 0.3; cursor: not-allowed; }
+    .page-info { font-size: 14px; color: #a09cb0; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -100,7 +117,6 @@
     };
   </script>
 
-  <!-- HALAMAN LOGIN ADMIN -->
   <div id="loginScreen">
     <div class="login-box">
       <h2><i class="fa-solid fa-lock"></i> Akses Admin</h2>
@@ -110,18 +126,29 @@
     </div>
   </div>
 
-  <!-- HALAMAN DASHBOARD (DAFTAR LINK) -->
   <div id="dashboardScreen">
     <div class="dashboard-header">
       <h1><i class="fa-solid fa-film"></i> Daftar Video Siap Share</h1>
-      <p>Klik tombol salin pada video yang ingin kamu bagikan.</p>
+      <p>Salin link video di bawah ini dengan mudah.</p>
     </div>
-    <div class="video-grid" id="videoGrid">
-      <!-- Card video akan dimunculkan di sini oleh JavaScript -->
+    
+    <div class="dashboard-actions">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cari judul video...">
     </div>
+
+    <div class="bulk-bar">
+      <label class="select-all-wrap">
+        <input type="checkbox" id="cbSelectAll"> Pilih Semua Video Halaman Ini
+      </label>
+      <button id="btnBulkCopy" class="btn-bulk-copy" disabled>
+        <i class="fa-solid fa-copy"></i> Salin (0) Link Terpilih
+      </button>
+    </div>
+
+    <div class="video-grid" id="videoGrid"></div>
+    <div class="pagination-controls" id="paginationControls"></div>
   </div>
 
-  <!-- PLAYER UTAMA -->
   <div class="container" id="playerContainer" style="display:none;">
     <div class="video-wrapper">
       <video id="videoPolos" playsinline preload="metadata" muted controlslist="nodownload" disablePictureInPicture>
@@ -187,16 +214,12 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // SETTING PASSWORD ADMIN DI SINI
       const PASSWORD_ADMIN = "Anjir"; 
 
       const WORKER_URL = 'https://vip-trackers.zonexhub.workers.dev';
       const params = new URLSearchParams(window.location.search);
       const slug = params.get("v");
 
-      // ==========================================
-      // LOGIKA LOGIN & DASHBOARD (JIKA AKSES HOMEPAGE)
-      // ==========================================
       if (!slug) {
         document.getElementById("loginScreen").style.display = "flex";
         
@@ -219,71 +242,181 @@
           if (e.key === "Enter") prosesLogin();
         });
 
-        return; // Hentikan script player karena ini mode homepage
+        return;
       }
 
-      // Jika ada slug, tampilkan player
       document.getElementById("playerContainer").style.display = "block";
 
       function loadDashboardVideos() {
         const versiAntiCache = Math.floor(Date.now() / 120000);
         const antiCacheUrl = "videos.json?v=" + versiAntiCache;
         
+        let allVideosList = [];
+        let filteredVideosList = [];
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let selectedLinks = new Set();
+
+        const btnBulkCopy = document.getElementById("btnBulkCopy");
+        const cbSelectAll = document.getElementById("cbSelectAll");
+
         fetch(antiCacheUrl)
           .then(res => res.json())
           .then(data => {
-            const grid = document.getElementById("videoGrid");
-            grid.innerHTML = "";
-            
-            Object.keys(data).forEach(key => {
+            allVideosList = Object.keys(data).map(key => {
               const vid = data[key];
               let judul = key.replace(/[-_]/g, ' ');
               judul = judul.charAt(0).toUpperCase() + judul.slice(1);
-              
-              const posterUrl = (vid.poster && vid.poster.trim() !== "") ? vid.poster : "https://via.placeholder.com/400x225/15141f/8b5cf6?text=No+Poster";
-              
-              // Buat link otomatis berdasarkan domain saat ini
+              const poster = (vid.poster && vid.poster.trim() !== "") ? vid.poster : "https://via.placeholder.com/400x225/15141f/8b5cf6?text=No+Poster";
               const link = window.location.origin + window.location.pathname + "?v=" + key;
-              
-              const card = document.createElement("div");
-              card.className = "video-card";
-              card.innerHTML = `
-                <img src="${posterUrl}" class="video-poster" alt="poster">
-                <div class="video-info">
-                  <h3>${judul}</h3>
-                  <button class="btn-copy" data-link="${link}">
-                    <i class="fa-solid fa-copy"></i> Salin Link
-                  </button>
-                </div>
-              `;
-              grid.appendChild(card);
-            });
+              return { key, judul, poster, link };
+            }).reverse();
 
-            // Fungsi tombol salin
-            document.querySelectorAll(".btn-copy").forEach(btn => {
-              btn.addEventListener("click", function() {
-                const linkToCopy = this.getAttribute("data-link");
-                navigator.clipboard.writeText(linkToCopy).then(() => {
-                  const oriText = this.innerHTML;
-                  this.innerHTML = `<i class="fa-solid fa-check"></i> Berhasil Disalin!`;
-                  this.classList.add("copied");
-                  setTimeout(() => {
-                    this.innerHTML = oriText;
-                    this.classList.remove("copied");
-                  }, 2000);
-                });
-              });
+            filteredVideosList = [...allVideosList];
+            renderPage(1);
+
+            document.getElementById("searchInput").addEventListener("input", function(e) {
+              const query = e.target.value.toLowerCase().trim();
+              filteredVideosList = allVideosList.filter(item => item.judul.toLowerCase().includes(query) || item.key.toLowerCase().includes(query));
+              renderPage(1);
             });
           })
           .catch(err => {
             console.error(err);
-            document.getElementById("videoGrid").innerHTML = "<p style='color:red;'>Gagal memuat data dari videos.json. Pastikan file ada.</p>";
+            document.getElementById("videoGrid").innerHTML = "<p style='color:red;'>Gagal memuat file videos.json.</p>";
           });
+
+        function updateBulkUI() {
+          const totalSelected = selectedLinks.size;
+          btnBulkCopy.innerHTML = `<i class="fa-solid fa-copy"></i> Salin (${totalSelected}) Link Terpilih`;
+          btnBulkCopy.disabled = totalSelected === 0;
+
+          const start = (currentPage - 1) * itemsPerPage;
+          const end = start + itemsPerPage;
+          const currentVisible = filteredVideosList.slice(start, end);
+          if (currentVisible.length > 0) {
+            cbSelectAll.checked = currentVisible.every(item => selectedLinks.has(item.link));
+          } else {
+            cbSelectAll.checked = false;
+          }
+        }
+
+        cbSelectAll.addEventListener("change", function() {
+          const start = (currentPage - 1) * itemsPerPage;
+          const end = start + itemsPerPage;
+          const currentVisible = filteredVideosList.slice(start, end);
+
+          if (this.checked) {
+            currentVisible.forEach(item => selectedLinks.add(item.link));
+          } else {
+            currentVisible.forEach(item => selectedLinks.delete(item.link));
+          }
+          renderPage(currentPage);
+        });
+
+        btnBulkCopy.addEventListener("click", function() {
+          if (selectedLinks.size === 0) return;
+          const textToCopy = Array.from(selectedLinks).join("\n");
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            const oriText = btnBulkCopy.innerHTML;
+            btnBulkCopy.innerHTML = `<i class="fa-solid fa-check"></i> ${selectedLinks.size} Link Disalin!`;
+            btnBulkCopy.classList.add("copied");
+            setTimeout(() => {
+              btnBulkCopy.innerHTML = oriText;
+              btnBulkCopy.classList.remove("copied");
+            }, 2000);
+          });
+        });
+
+        function renderPage(page) {
+          currentPage = page;
+          const grid = document.getElementById("videoGrid");
+          grid.innerHTML = "";
+
+          const start = (currentPage - 1) * itemsPerPage;
+          const end = start + itemsPerPage;
+          const paginatedItems = filteredVideosList.slice(start, end);
+
+          if (paginatedItems.length === 0) {
+            grid.innerHTML = "<p style='color:#a09cb0; grid-column: 1/-1; text-align:center;'>Video tidak ditemukan.</p>";
+            document.getElementById("paginationControls").innerHTML = "";
+            updateBulkUI();
+            return;
+          }
+
+          paginatedItems.forEach(vid => {
+            const isChecked = selectedLinks.has(vid.link) ? "checked" : "";
+            const card = document.createElement("div");
+            card.className = "video-card";
+            card.innerHTML = `
+              <div class="video-cb-overlay">
+                <input type="checkbox" class="video-cb" data-link="${vid.link}" ${isChecked}>
+              </div>
+              <img src="${vid.poster}" class="video-poster" alt="poster">
+              <div class="video-info">
+                <h3>${vid.judul}</h3>
+                <button class="btn-copy" data-link="${vid.link}">
+                  <i class="fa-solid fa-copy"></i> Salin Link
+                </button>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+
+          document.querySelectorAll(".video-cb").forEach(cb => {
+            cb.addEventListener("change", function() {
+              const link = this.getAttribute("data-link");
+              if (this.checked) {
+                selectedLinks.add(link);
+              } else {
+                selectedLinks.delete(link);
+              }
+              updateBulkUI();
+            });
+          });
+
+          document.querySelectorAll(".btn-copy").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const linkToCopy = this.getAttribute("data-link");
+              navigator.clipboard.writeText(linkToCopy).then(() => {
+                const oriText = this.innerHTML;
+                this.innerHTML = `<i class="fa-solid fa-check"></i> Berhasil Disalin!`;
+                this.classList.add("copied");
+                setTimeout(() => {
+                  this.innerHTML = oriText;
+                  this.classList.remove("copied");
+                }, 2000);
+              });
+            });
+          });
+
+          updateBulkUI();
+          renderPaginationControls();
+        }
+
+        function renderPaginationControls() {
+          const totalPages = Math.ceil(filteredVideosList.length / itemsPerPage);
+          const controls = document.getElementById("paginationControls");
+          
+          if (totalPages <= 1) {
+            controls.innerHTML = "";
+            return;
+          }
+
+          controls.innerHTML = `
+            <button class="btn-page" id="prevPage" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i> Prev</button>
+            <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
+            <button class="btn-page" id="nextPage" ${currentPage === totalPages ? 'disabled' : ''}>Next <i class="fa-solid fa-chevron-right"></i></button>
+          `;
+
+          const btnPrev = document.getElementById("prevPage");
+          const btnNext = document.getElementById("nextPage");
+
+          if (btnPrev) btnPrev.addEventListener("click", () => renderPage(currentPage - 1));
+          if (btnNext) btnNext.addEventListener("click", () => renderPage(currentPage + 1));
+        }
       }
 
-      // ==========================================
-      // LOGIKA PLAYER (JIKA ADA ?v= SLUG)
-      // ==========================================
       function sendTelegramLog(eventTitle, detailInfo = '') {
         if (!WORKER_URL || WORKER_URL.includes('namakamu')) return;
         const timeNow = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
